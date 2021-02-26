@@ -1,0 +1,27 @@
+{
+  "name": "api-xacalli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "appXacalli.js",
+  "scripts": {
+    "start": "node ./appXacalli.js",
+    "dev": "nodemon ./appXacalli.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvmoran1/api-xacalli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dvmoran1/api-xacalli/issues"
+  },
+  "homepage": "https://github.com/dvmoran1/api-xacalli#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
