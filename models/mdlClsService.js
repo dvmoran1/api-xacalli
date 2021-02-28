@@ -5,11 +5,5 @@ class mdlClsService{
 		this.quota        = quota;
 		this.duration = duration;
 	}
-	module.exports = mdlClsService;
-	/*addService   (){}
-	showServices (){}
-	showService  (){}
-	updateService(){}
-	removeService(){}*/
-
 }
+module.exports = mdlClsService;

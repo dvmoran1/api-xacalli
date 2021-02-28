@@ -9,10 +9,5 @@ class mdlClsRoomDetail{
 		this.idCliet         = idCliet;
 		this.idRoom          = idRoom;
 	}
-	module.exports = mdlClsRoomDetail;
-    /*addRoomDetail   (){}
-    showRoomDetails (){}
-    showRoomDetail  (){}
-    updateRoomDetail(){}
-    removeRoomDetail(){}	*/
 }
+module.exports = mdlClsRoomDetail;

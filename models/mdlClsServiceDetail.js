@@ -7,10 +7,5 @@ class mdlClsServiceDetail{
 		this.startTime  = startTime; 
 		this.endingTime = endingTime;
 	}
-	module.exports = mdlClsServiceDetail;
-    /*addServiceDetail   (){}
-    showServiceDetails (){}
-    showServiceDetail  (){}
-    updateServiceDetail(){}
-    removeServiceDetail(){}	*/
 }
+module.exports = mdlClsServiceDetail;
