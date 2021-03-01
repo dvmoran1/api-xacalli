@@ -10,7 +10,7 @@ const ServiceDetail = require('../models/mdlClsServiceDetail');
 		res.send(ServiceDetail1);
 	}
 	function showServiceDetail  (req, res){
-		//En proceso de logica
+		var ShowIdServiceDetail= idService;
 	}
 	function updateServiceDetail(req, res){
 		var ServiceDetail1      = new ServiceDetail(1, '30/08/2020', '05/09/2020', 'd','17:00','18:00');

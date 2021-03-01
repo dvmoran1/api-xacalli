@@ -11,7 +11,7 @@ const Service = require('../models/mdlClsService');
 		res.send(Service1);
 	}
 	function showService  (req, res){
-		//En proceso de logica
+		var ShowIService= idService;
 	}
 	function updateService(req, res){
 		var Service1      = new Service(1,'Asador', '300','3 hours');
