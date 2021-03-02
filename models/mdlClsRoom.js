@@ -5,10 +5,11 @@ class mdlClsRoom{
 		this.quota        = quota;
 		this.availability = availability;
 	}
-	module.exports = mdlClsRoom;
+
 	/*addRoom(){}
 	showRooms(){}
 	showRoom(){}
 	updateRoom(){}
 	removeRoom(){}*/
 }
+module.exports = mdlClsRoom;

@@ -9,7 +9,7 @@ class mdlClsEmployee{
 		this.password        = password;
 		this.edoIdEdo        = edoIdEdo;
 	}
-	module.exports = mdlClsEmployee;
+
 	/*addEmployee   (){}
 	showEmployees (){}
 	showEmployee  (){}
@@ -17,3 +17,4 @@ class mdlClsEmployee{
 	removeEmployee(){}
 	*/
 }
+module.exports = mdlClsEmployee;
