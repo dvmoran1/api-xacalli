@@ -11,7 +11,7 @@ const Room = require('../models/mdlClsRoom');
 		res.send(Room1);
 	}
 	function showRoom  (req, res){
-		//En proceso de logica
+		var ShowIdRoom= idRoom;
 	}
 	function updateRoom(req, res){
 		var Room1      = new Room(1,'500','1','YES');

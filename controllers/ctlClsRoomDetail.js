@@ -11,7 +11,7 @@ const RoomDetail = require('../models/mdlClsRoomDetail');
 		res.send(RoomDetail1);
 	}
 	function showRoomDetail  (req, res){
-		//En proceso de logica
+		var ShowIdRoomDetail= idRoom;
 	}
 	function updateRoomDetail(req, res){
 		var RoomDetail1      = new RoomDetail(1,'30/08/2020', '05/09/2020', 'd','','', '3405','2');

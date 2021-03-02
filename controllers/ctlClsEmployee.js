@@ -11,7 +11,7 @@ const Employee = require('../models/mdlClsEmployee');
 		res.send(employee1);
 	}
 	function showEmployee  (req, res){
-		//En proceso de logica
+		var ShowIdEmployee= idEmployee;
 	}
 	function updateEmployee(req, res){
 		var employee1      = new Employee(1,'Juan','vega', '200', '271546456', 'jajjajaj@vega.com', '1234' , '34508');
