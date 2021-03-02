@@ -6,10 +6,5 @@ class mdlClsRoom{
 		this.availability = availability;
 	}
 
-	/*addRoom(){}
-	showRooms(){}
-	showRoom(){}
-	updateRoom(){}
-	removeRoom(){}*/
 }
 module.exports = mdlClsRoom;

@@ -10,11 +10,5 @@ class mdlClsEmployee{
 		this.edoIdEdo        = edoIdEdo;
 	}
 
-	/*addEmployee   (){}
-	showEmployees (){}
-	showEmployee  (){}
-	updateEmployee(){}
-	removeEmployee(){}
-	*/
 }
 module.exports = mdlClsEmployee;

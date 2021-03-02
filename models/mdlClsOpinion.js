@@ -8,11 +8,5 @@ class mdlClsOpinion{
 		this.Opinion4  = Opinion4;		
 	}
 
-	/*addOpinion(){}
-	showOpinions(){}
-	showOpinion(){}
-	updateOpinion(){}
-	removeOpinion(){}*/
-
 }
 module.exports = mdlClsOpinion;
