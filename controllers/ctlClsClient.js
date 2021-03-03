@@ -10,9 +10,11 @@ const Client = require('../models/mdlClsClient');
 		//var client2 = new Client(2,'Erica','vega','jajjajaj@vega.com');
 		res.send(client1);
 	}
+
 	function showClient  (req, res){
-		//En proceso de logica
+		var ShowIdClient= idClient;
 	}
+	
 	function updateClient(req, res){
 		var client1      = new Client(1,'Juan','vega','jajjajaj@vega.com');
 		var modificacion = new Client(2,'Erica','vega','jajjajaj@vega.com');

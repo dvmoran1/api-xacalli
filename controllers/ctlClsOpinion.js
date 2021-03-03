@@ -11,7 +11,7 @@ const Opinion = require('../models/mdlClsOpinion');
 		res.send(opinion1);
 	}
 	function showOpinion  (req, res){
-		//En proceso de logica
+		var ShowIdOpinion= idOpinion;
 	}
 	function updateOpinion(req, res){
 		var Opinion1      = new Opinion(1,"Puede ser mejor");

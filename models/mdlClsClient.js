@@ -1,6 +1,6 @@
 class mdlClsClient{
 	constructor(idCliet, name, lastname, telephoneNumber, mascot, nationality, email, facebook, idEmployee){
-		this.idCliet         = idCliet;
+		this.idClient         = idClient;
 		this.name            = name;
 		this.lastname        = lastname;
 		this.telephoneNumber = telephoneNumber;
