@@ -167,8 +167,7 @@ FROM cliente_servicio;
 SELECT *
 FROM opinion;
 
--- Consultas
-
+-- Consultas EN la BD
 
 SELECT EPO_ID_EPO, AVG(no_mascotas)
 FROM cliente
