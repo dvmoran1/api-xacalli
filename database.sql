@@ -168,3 +168,28 @@ SELECT *
 FROM opinion;
 
 -- Consultas
+
+
+SELECT EPO_ID_EPO, AVG(no_mascotas)
+FROM cliente
+WHERE EPO_ID_EPO != 1
+GROUP BY EPO_ID_EPO
+HAVING AVG(no_mascotas) > 1;
+
+
+SELECT nombre, SUM(AVG(salario))
+FROM empleado
+WHERE ID_EPO > 1
+GROUP BY (nombre);
+
+SELECT e.nombre, c.nombre
+FROM empleado e LEFT OUTER JOIN cliente c on (e.id_epo = c.epo_id_epo);
+
+SELECT (e.SALARIO + COUNT(EPO_ID_EPO)) as "Pago total"
+FROM empleado e right OUTER JOIN cliente
+on (e.id_epo = id_epo);
+
+SELECT c.nombre, ch.fecha_de_inicio, ch.check_in
+FROM cliente c LEFT OUTER JOIN cliente_habitacion ch ON (c.id_CTE = ch.CTE_id_CTE)
+WHERE ch.fecha_de_inicio >= '2020-07-15'
+
