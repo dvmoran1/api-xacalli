@@ -1,0 +1,7 @@
+id_servicio,Nombre,Costo,Duracion
+s001,Asador,0,4 hrs
+s002,Camping,0,24 hrs
+s003,Fogata,400,2 hrs
+s004,Hiking,50,2 hrs
+s005,Masaje,600,55 min
+s006,Telescopio,0,2 hrs

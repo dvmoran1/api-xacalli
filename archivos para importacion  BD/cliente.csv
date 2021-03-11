@@ -1,0 +1,61 @@
+id_cte,nombre,apellido,telefono,no. personas,mascotas,nacionalidad,email,facebook,epo_id_epo
+c0001,Yan,Savio,559281403215,4,0,Brasil,yan_sav@gmail.com,Yan Savio,e001
+c0002,Victor,Fraile,34646107223,5,2,España,vicfraile@hotmail.com,Victor Fraile,e003
+c0003,Valentina,Solimano,527772006653,2,4,México,vale_solimano@yahoo.com,Valentina Solimano,e001
+c0004,Txema,Puch,34669589109,6,1,España,txepu@gmail.com,,e002
+c0005,Tamara,Adjimann,5491131373020,7,1,Argentina,tamad@hotmail.com,Tamara Adjimann,e003
+c0006,Sara,Carvajal,34671278379,2,1,España,carva_sara@gmail.com,Sara Carvajal,e002
+c0007,Santiago,Tutor,34648678742,8,4,España,santitutor@outlook.com,Santiago Tutor,e004
+c0008,Sandra,Perez,34722425765,3,2,España,sandyperez@hotmail.com,Sandra Perez,e002
+c0009,Romina,Agostinelli,51941723576,4,1,Perú,romi_agost@yahoo.com,Romina Agostinelli,e001
+c0010,Rocio,Savina,5492616178814,2,0,Argentina,raygo@gmail.com,Rocio Savina,e004
+c0011,Raymundo,Gomez,525535526529,8,2,México,rayg@outlook.com,Raymundo Gomez,e003
+c0012,Ray ,Liebano,522212698126,5,0,México,rayli@hotmail.com,,e002
+c0013,Rafael,Munguia,524424325445,7,1,México,munguiarafael@gmail.com,Rafael Munguia,e004
+c0014,Raciel ,Flores,522226634392,1,1,México,r_flores@outlook.com,Raciel  Flores,e001
+c0015,Patricio,Geretto,5491138995400,6,4,Argentina,patge@yahoo.com,Patricio Geretto,e004
+c0016,Paola,Haiat,34634974271,7,3,España,paohai@gmail.com,Paola Haiat,e002
+c0017,Oscar,Gutierrez,528333243289,2,3,México,,Oscar Gutierrez,e003
+c0018,Nayeli,Suarez,525533186081,5,2,México,neye_suarez@outlook.com,Nayeli Suarez,e004
+c0019,Miriam,Cuevas,34663183487,8,2,España,mirycuevas@yahoo.com,Miriam Cuevas,e001
+c0020,Meli,Gallotto,5493519887077,1,4,Argentina,melgallo@gmail.com,Meli Gallotto,e002
+c0021,Mayra,Acuña,5491158910590,6,3,Argentina,mayacuna@outlook.com,Mayra Acuña,e001
+c0022,Maunel,Yacuzzi,5493416643466,4,2,Argentina,,Maunel Yacuzzi,e004
+c0023,Marta,Jimenez,34636410025,9,4,España,jime_marta@hotmail.com,Marta Jimenez,e003
+c0024,Marien,Ponce,34647899051,8,5,España,marianponce@outlook.com,Marien Ponce,e003
+c0025,Maria Fernanda,Caparo,51964977704,3,4,Perú,,Maria Fernanda Caparo,e001
+c0026,Maria,Caamaño Sendon,34673466203,5,1,España,marisendon@outlook.com,Maria Caamaño Sendon,e002
+c0027,Marcos,Villanueva,51944542784,7,2,Perú,marcosvilla@hotmail.com,Marcos Villanueva,e004
+c0028,Macarena,Suarez,59899890525,4,1,Uruguay,macasuarez@outlook.com,,e002
+c0029,Macarena,Yañez,56978444627,2,1,Chile,,Macarena Yañez,e003
+c0030,Luz,Juarez,5493515055885,6,0,Argentina,luzjuarez@hotmail.com,Luz Juarez,e001
+c0031,Luis,Torres,527771908945,8,3,México,,Luis Torres,e004
+c0032,Lidia,Valiente,34622738402,4,3,España,lidyvaliente@yahoo.com,Lidia Valiente,e002
+c0033,Laureano,Ottonello Tanno,5492983521827,3,1,Argentina,lauottonello@gmail.com,Laureano Ottonello Tanno,e003
+c0034,Karina,Cruz,529612688930,7,2,México,cruzkarina@yahoo.com,Karina Cruz,e002
+c0035,Jose,Lorencio Abril,34655177477,6,1,España,jose_abril@hotmail.com,Jose Lorencio Abril,e001
+c0036,Hector,Natera Couso,5491133968043,7,2,Argentina,natacou@outlook.com,Hector Natera Couso,e003
+c0037,Gerardo ,Barrientos,56971813738,3,3,Chile,,Gerardo  Barrientos,e004
+c0038,Francisco,Santos,34627247647,5,1,España,santosfran@yahoo.com,Francisco Santos,e002
+c0039,Fidel,Villalpando,33783849418,8,1,Francia,villa_fidel@outlook.com,,e003
+c0040,Felipe,Beltran Devaud,56979568702,4,0,Chile,felipe_beltran@hotmail.com,Felipe Beltran Devaud,e004
+c0041,Esbeidi,Gonzalez,527751178280,6,0,México,esbegonza@yahoo.com,Esbeidi Gonzalez,e001
+c0042,Elena,Peña,34655492271,2,3,España,elena0206@gmail.com,,e004
+c0043,Edward,Stiven,573213837355,4,2,Colombia,edstiven@outlook.com,Edward Stiven,e002
+c0044,Eduardo,angeles,525553204325,3,4,México,edu_angel@gmail.com,Eduardo angeles,e003
+c0045,Diego,Martinez,51940599179,7,2,Perú,,Diego Martinez,e001
+c0046,Diana,Kosciak,5493624882143,5,0,Argentina,diana_kosc@hotmail.com,Diana Kosciak,e003
+c0047,Claudia,Sanchez,51947861403,4,0,Perú,claudia_sanchez@outlook.com,Claudia Sanchez,e001
+c0048,Cesar,Jimenez,34689379461,2,4,España,jimenezcesar@yahoo.com,Cesar Jimenez,e004
+c0049,Carolina,Enriquenz,5492235767626,3,2,Argentina,caro_enrique@hotmail.com,Carolina Enriquenz,e002
+c0050,Carolina,Herrera,524441054445,1,1,México,herrera_caro@yahoo.com,Carolina Herrera,e003
+c0051,Carlos,Tapia Hernandez,525540447220,5,3,México,tapiacarlos@hotmail.com,,e001
+c0052,Camilo,Sierpe,56987440794,6,3,Chile,sierpecam@yahoo.com,Camilo Sierpe,e004
+c0053,Bianca,Nina,51991933567,5,3,Perú,biancanina@gmail.com,Bianca Nina,e002
+c0054,Begoña,alvarez,34654934786,4,2,España,,Begoña alvarez,e001
+c0055,Antuanet,Elias,51999870409,6,3,Perú,bego_alv@hotmail.com,,e004
+c0056,Anthony,Romero,51955446754,8,2,Perú,,Anthony Romero,e002
+c0057,Alejandro,Martinez,5493644563922,3,1,Argentina,ale_martinez@yahoo.com,Alejandro Martinez,e003
+c0058,Alejandra,Martinez,573223177078,1,0,Colombia,,Alejandra Martinez,e001
+c0059,Alberto,Aduriz,34601239112,3,2,España,aduriz_alb@hotmail.com,Alberto Aduriz,e003
+c0060,Adriana,Cahuich,529811172617,4,2,México,adricahuich@gmail.com,Adriana Cahuich,e004
