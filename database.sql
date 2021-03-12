@@ -104,11 +104,7 @@ ALTER TABLE cliente_servicio ADD CONSTRAINT CTE_SVO_PK PRIMARY KEY ( cte_id_cte,
 
 
 CREATE TABLE opinion (
-<<<<<<< HEAD
-    id_OPN      VARCHAR (10) NOT NULL,
-=======
     id_OPN      VARCHAR (10) Not NULL,
->>>>>>> ce0234abd4e85e4818dcca9d45be6bae6b93e866
     cte_id_cte  VARCHAR (10) NOT NULL,
     texto       VARCHAR (600) NOT NULL,
     valoracion   INT NOT NULL
@@ -154,7 +150,8 @@ VALUES ("e004","Julian","Hernandez",500,"525521364939");
 -- Verificación importacion datos
 
 -- Se importaron los datos de las 6 tablas restantes para agilizar la población de la BD.
--- Pueden encontrar los archivos .csv en la carpeta "archivos para importacion  BD"
+-- Pueden encontrar los archivos .csv en la carpeta "Archivos .csv"
+
 SELECT *
 FROM empleado;
 
@@ -200,4 +197,3 @@ on (e.id_epo = id_epo);
 SELECT c.nombre, ch.fecha_de_inicio, ch.check_in
 FROM cliente c LEFT OUTER JOIN cliente_habitacion ch ON (c.id_CTE = ch.CTE_id_CTE)
 WHERE ch.fecha_de_inicio >= '2020-07-15'
-
