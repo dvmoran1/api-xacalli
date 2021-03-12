@@ -102,7 +102,9 @@ ALTER TABLE cliente_servicio
 ALTER TABLE cliente_servicio ADD CONSTRAINT CTE_SVO_PK PRIMARY KEY ( cte_id_cte,
                                                                              svo_id_svo );
 
+
 CREATE TABLE opinion (
+    id_OPN      VARCHAR (10) NOT NULL,
     cte_id_cte  VARCHAR (10) NOT NULL,
     texto       VARCHAR (600) NOT NULL,
     valoracion   INT NOT NULL
@@ -111,6 +113,9 @@ CREATE TABLE opinion (
 ALTER TABLE opinion
     ADD CONSTRAINT opn_cte_fk FOREIGN KEY ( cte_id_cte )
         REFERENCES cliente ( id_cte );
+        
+ALTER TABLE opinion ADD CONSTRAINT CTE_OPN_PK PRIMARY KEY ( id_OPN,
+                                                                  cte_id_cte );
 
 -- Descripción de las tablas
 
