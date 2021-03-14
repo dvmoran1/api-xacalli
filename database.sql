@@ -1,5 +1,7 @@
 -- Creación de base de datos y tablas
 
+
+
 CREATE DATABASE api_xacalli;
 
 USE api_xacalli;

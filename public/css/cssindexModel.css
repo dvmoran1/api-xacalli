@@ -1,0 +1,233 @@
+:root{
+	--width: 250px;
+	--padding: 10px;
+	--bgcolor:#0fe2d4;
+	--width-collapsed: 50px;
+	--hovercolor: rgb(23,23,23);
+}
+
+body
+{
+	background:  !important;/**/
+	font-family: 'Roboto', sans-serif;
+	line-height: 18px;// Espacio entre letras
+	padding: 0;
+	margin: 0;
+	margin-left: var(--width);
+	color: white;
+}
+
+
+.body-expanded
+{
+	margin-left: var(--width-collapsed);
+}
+
+.contenedor
+{
+	width: 99.5%;
+
+}
+
+
+.sidebar
+{
+
+	color:#fff;
+	position: fixed;
+	height: 100%;
+	left: 0;
+	top: 0;
+}
+
+.head
+{
+	box-sizing: border-box;
+	border-bottom: solid 5px var(--hovercolor);/*pone un espacio*/
+	background-color: black;
+	opacity: 70%;
+	height: 85px;
+
+}
+.head >*{
+	
+		margin-left: 25px;
+}
+
+.title
+{
+	box-sizing: border-box;;
+	overflow: hidden;/*para evitar que el testo se desborde*/
+}
+
+.btn-menu, .title, .profile
+{
+	display: inline-block;/*alinea contenido en la misma linea*/
+	vertical-align: middle;
+}
+
+.btn-menu /*aui se alogara la hamburger*/
+{
+	cursor:pointer;
+	padding: 10px;
+	width: var(--width-collapsed);
+	box-sizing: border-box;
+}
+
+.btn-menu:hover/*resalta al color asignado al poner el cursor*/
+{
+	background-color: var(--hovercolor);
+}
+
+.btn-hamburger /*pone el menu de tipo hamburger*/
+{
+	background-color: #fff;
+	width: 100%;
+	height: 5px;
+	margin: 5px 0;
+}
+
+.profile 
+{
+	box-sizing: border-box;
+	
+	padding: var(--padding);
+	text-align: center;
+	width: 50px;
+	height: 50px;
+}
+
+.photo
+{
+
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	width: 65px;
+	max-height:65px;
+
+}
+
+.photo img
+{
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	height: 100%;
+
+}
+
+
+.menu
+{
+	overflow: hidden;
+	border:0;
+	padding: var(--padding) 0; /*pone la linea antes de Ciasa*/
+}
+
+.sidebar ul
+{
+	list-style: none;/*quita las viñetas*/
+	overflow: hidden;
+}
+
+
+.icon
+{
+	display: inline-block;
+}
+
+
+
+.menu li a
+{
+	color: #000000;
+	display: block;
+	padding: 5px 5px;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.menu li a:hover
+{
+	/*background-color: #ff5b00; var(--hovercolor);*/
+	background-color: #0060ff;
+	color: #fff;
+}
+.activado{
+	background-color: #0060ff;
+	color: #fff;
+}
+
+.menu li a >*{
+	display: inline-block;
+	padding: 1px 5px;
+}
+.img
+{
+	width: 100%;
+	border-radius: 10px;
+}
+
+.icon
+{
+	box-sizing: border-box;
+	padding: var(--padding);
+	width: var(--width-collapsed);
+}
+
+
+.menu-expanded
+{
+	width: var(--width);
+	box-shadow: 0 0 10px rgba(0,0,0,0,5);
+}
+
+.menu .title
+{
+	display: none;
+
+}
+
+.sidebar .head .btn-menu1{
+	display: none;
+
+}
+
+.header
+{
+	width: 100%;
+	background-color: black;
+	opacity: 70%;
+	height: 80px;
+	overflow: hidden;
+	border-left:  solid 5px var(--hovercolor);/*pone un espacio*/
+	border-bottom:   solid 5px var(--hovercolor);pone un espacio*/
+	position: fixed;
+	text-align: center;
+}
+
+.header img{
+	width: 50%;
+	height: 100%;
+}
+
+.contenido
+{
+	width: 100%;
+	margin: 0;
+	background-color: #fff;
+	border-left:  solid 5px var(--hovercolor);/*pone un espacio*/
+	position: fixed;
+	height: 900px;
+	background: black;
+	opacity: 80%;
+	padding: 10px;
+	box-sizing: border-box;
+
+	
+}
+
+
+

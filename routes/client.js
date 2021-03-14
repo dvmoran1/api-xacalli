@@ -9,7 +9,7 @@ const {
 
 
 router.post  ('/',    addClient);
-router.get   ('/:id', showClient);
+//router.get   ('/:id', showClient);
 router.get   ('/',    showClients);
 router.put   ('/:id', updateClient);
 router.delete('/:id', removeClient);
