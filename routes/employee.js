@@ -13,5 +13,14 @@ module.exports = function(app) {
  
     app.delete('/:id_epo', employee.eliminarEmpleado);
 
+    app.get('/coin/:nombre', employee.buscarCoincidencia);
+    app.get('/limit/:val', employee.obtenerEmpleadosLimit);
+    app.get('/atributo/:val', employee.buscarPorAtributo);
+
+    
+    
+
+
+
 
 }
