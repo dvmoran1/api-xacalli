@@ -35,7 +35,8 @@ exports.obtenerEmpleado = (req, res) => {
 //tampcoco
 exports.actualizarEmpleado = (req, res) => {
 	const id = req.params.id_epo;
-	employee.update( { id_epo: req.body.id_epo, nombre: req.body.nombre, apellido: req.body.apellido, salario: req.body.salario, telefono: req.body.telefono, comision: req.body.comision, edo_id_edo: req.body.edo_id_edo, age: req.body.age }, 
+	employee.update( { id_epo: req.body.id_epo, nombre: req.body.nombre, apellido: req.body.apellido, salario: req.body.salario, telefono: req.body.telefono, 
+		comision: req.body.comision, edo_id_edo: req.body.edo_id_edo, age: req.body.age }, 
 					 { where: {id: req.params.id_epo} }
 				   ).then(() => {
 					 res.status(200).send("En empleado con Id " + id +" se actualiza corectamente");
