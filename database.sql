@@ -8,9 +8,9 @@ CREATE TABLE empleado (
     id_epo      VARCHAR (10) NOT NULL,
     nombre      VARCHAR (20) NOT NULL,
     apellido    VARCHAR (20) NOT NULL,
-    salario   	INT NOT NULL,
+    salario     INT NOT NULL,
     telefono    VARCHAR (15) NOT NULL,
-    comision 	INT,
+    comision    INT,
     edo_id_edo  VARCHAR (10)
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE cliente (
     nombre        	VARCHAR (20) NOT NULL,
     apellido      	VARCHAR (20) NOT NULL,
     telefono      	VARCHAR (15) NOT NULL,
-    no_personas		INT NOT NULL,
+    no_personas     INT NOT NULL,
     no_mascotas   	INT NOT NULL,
     nacionalidad  	VARCHAR (20) NOT NULL,
     email         	VARCHAR (30),
@@ -52,11 +52,11 @@ CREATE TABLE cliente_habitacion (
     fecha_de_reservacion  DATE NOT NULL,
     fecha_de_inicio       DATE NOT NULL,
     fecha_de_fin          DATE NOT NULL,
-    no_noches			  INT,
+    no_noches             INT,
     check_in              VARCHAR (20) NOT NULL,
     chek_out              VARCHAR (20) NOT NULL,
     pago_anticipo         INT NOT NULL,
-    precio_habitacion	  INT NOT NULL,
+    precio_habitacion     INT NOT NULL,
     cte_id_cte            VARCHAR (10) NOT NULL,
     hbn_id_hbn            VARCHAR (10) NOT NULL
 );
