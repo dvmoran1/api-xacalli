@@ -11,7 +11,7 @@ exports.nuevoCliente = (req, res,next) => {
 	Cli.save().then(cli => {
 		return res.status(201).json(cli)
 	}).then(next).catch(error => {
-		return res.json("El usuario ya existe")
+		return res.json("El cliente ya existe")
 	});
 };
 
@@ -33,7 +33,7 @@ exports.obtenerCliente = (req, res) => {
 	const id = req.params.id_epo;
 	client.findByPk(id).then(client => {
 		if(client===null){
-			return res.json("El id de usuario no existe");
+			return res.json("El id de cliente no existe");
 		}
 		res.json(client);
 	}).catch(error => {
@@ -90,70 +90,10 @@ exports.eliminarCliente = (req, res) => {
 			res.status(200).json('Se elimino satisfactoriamente el empleado con Id ' + id);
 		});
 	}).catch(error => {
-		return res.json("El Usuario no existe")
+		return res.json("El cliente no existe")
 	})
 };
 
-//######### BUSCAR POR COINCIDENCIA ############### OPCION DOS 
-//                                       .../campo de tabla/valorabuscar
-// GET : http://localhost:3000/client/coin/salario/C
-/*exports.buscarCoincidencia = (req, res) => {
-	const nombre = req.params.nombre;
-	const apellido = req.params.apellido;
-	const salario = req.params.salario;
-	const telefono = req.params.telefono;
-	const comision = req.params.comision;
-
-	var condition  = nombre   ? { nombre:   { [Op.like]: `%${nombre}%`   } } : null;
-	var condition1 = apellido ? { apellido: { [Op.like]: `%${apellido}%` } } : null;
-	var condition2 = salario  ? { salario:  { [Op.like]: `%${salario}%`  } } : null;
-	var condition3 = telefono ? { telefono: { [Op.like]: `%${telefono}%` } } : null;
-	var condition4 = comision ? { comision: { [Op.like]: `%${comision}%` } } : null;
-
-	switch(nombre){
-		case 'nombre':
-			client.findAll({ where: condition })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'apellido':
-			client.findAll({ where: condition1 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'salario':
-			client.findAll({ where: condition2 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'telefono':
-			client.findAll({ where: condition3 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'comision':
-			client.findAll({ where: condition4 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-		break;
-	}
-};
-*/
 //######### BUSCAR CON LIMIT ###############
 // GET : http://localhost:3000/client/limit/1
 exports.obtenerClientesLimit = (req, res) => {

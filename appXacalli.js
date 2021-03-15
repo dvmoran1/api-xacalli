@@ -15,9 +15,17 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended:false}));
 app.use(bodyParser.json());
 
+app.use('/',require('./routes'));
+
 const db = require('./config/dbConexion.js');
 require('./routes/employee')(app);
 require('./routes/client')(app);
+require('./routes/opinion')(app);
+
+require('./routes/room')(app);
+require('./routes/roomDetail')(app);
+require('./routes/service')(app);
+//require('./routes/servicedet')(app);
 
 //cachamos los errores a 404
 app.use(function(req, res, next){

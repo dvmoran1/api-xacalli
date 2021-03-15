@@ -1,13 +1,42 @@
-class mdlClsRoomDetail{
-	constructor(reservationDate, startDate, endingDate, advance, checkIn, checkOu, idCliet, idRoom){
-		this.reservationDate = reservationDate;
-		this.startDate       = startDate;
-		this.endingDate      = endingDate;
-		this.advance         = advance;
-		this.checkIn         = checkIn;
-		this.checkOu         = checkOu;
-		this.idCliet         = idCliet;
-		this.idRoom          = idRoom;
+module.exports = (sequelize, DataTypes) => {
+	const cliHabitacion = sequelize.define('cliHabitacion',{
+	fecha_de_reservacion:{
+		type       : DataTypes.DATE,
+		primaryKey : true
+	},
+	fecha_de_inicio:{
+		type       : DataTypes.DATE,
+		allowNull  : false
+	},
+	fecha_de_fin:{
+	    type       : DataTypes.DATE,
+		allowNull  : false
+	},
+	no_noches      :DataTypes.INTEGER,
+	check_in:{
+		type       : DataTypes.STRING,
+		primaryKey : true
+	},
+	chek_out:{
+		type       : DataTypes.STRING,
+		allowNull  : false
+	},
+	pago_anticipo:{
+	    type       : DataTypes.INTEGER,
+		allowNull  : false
+	},
+	precio_habitacion:{  
+		type       :  DataTypes.INTEGER,
+		allowNull  : false
+	},
+	cte_id_cte:{
+	    type       : DataTypes.STRING,
+		allowNull  : false
+	},
+	hbn_id_hbn:{  
+		type       :  DataTypes.INTEGER,
+		allowNull  : false
 	}
+},{tableName : 'cliente_habitacion',timestamps: false});
+	return cliHabitacion;
 }
-module.exports = mdlClsRoomDetail;
