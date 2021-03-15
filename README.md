@@ -220,6 +220,8 @@ En la siguiente imagen, se puede ver la estructura  de las tablas en SQL.
 # 🔩 Implementación del Proyecto
 Al dar clic ["aquí”](https://app.swaggerhub.com/apis-docs/Equipo1-Bedu/Xacalli/1.0.0) pueden encontrar nuestro swagger. 
 
+Al dar clic ["aquí”](https://api-xacalli.herokuapp.com/) pueden ver la implementacion en Heroku . 
+
 Documentación que los usuarios pueden consultar acerca del funcinamiento de nuestra API.
 
 
