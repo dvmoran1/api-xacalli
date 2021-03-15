@@ -1,6 +1,10 @@
 
 module.exports = function(app) {
 
+    app.get('/', (req,res)=>{
+        res.send('API-XACALLI');
+    });
+
     const employee = require('../controllers/ctlEmployee.js');
     app.post('/employee/',          employee.nuevoEmpleado);
     app.get('/employee/',           employee.obtenerEmpleados);

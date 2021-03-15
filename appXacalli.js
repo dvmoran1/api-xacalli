@@ -18,8 +18,6 @@ app.use(bodyParser.json());
 const db = require('./config/dbConexion.js');
 
 // app.use('/', require('./routes'));
-
-// require('./routes')(app);
 require('./routes/employee')(app);
 require('./routes/client')(app);
 
