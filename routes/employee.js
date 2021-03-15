@@ -1,8 +1,10 @@
 
 module.exports = function(app) {
 
+    const path = require('path')
+    
     app.get('/', (req,res)=>{
-        res.send('API-XACALLI');
+        res.sendFile(path.join(__dirname, '../index.html'));
     });
 
     const employee = require('../controllers/ctlEmployee.js');
