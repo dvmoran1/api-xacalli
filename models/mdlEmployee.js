@@ -1,8 +1,14 @@
 
+
 module.exports = (sequelize, DataTypes) => {
+	const  Sequelize  = require('sequelize');
+
 	const Employee = sequelize.define('Employee',{
 	id_epo:{
-		type       : DataTypes.STRING,
+		type: DataTypes.UUID,
+  		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+      	unique: true,
 		primaryKey : true
 	},
 	nombre:{

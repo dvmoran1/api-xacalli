@@ -90,66 +90,7 @@ exports.eliminarEmpleado = (req, res) => {
 	})
 };
 
-//######### BUSCAR POR COINCIDENCIA ############### OPCION DOS 
-//                                       .../campo de tabla/valorabuscar
-// GET : http://localhost:3000/employee/coin/salario/C
-/*exports.buscarCoincidencia = (req, res) => {
-	const nombre = req.params.nombre;
-	const apellido = req.params.apellido;
-	const salario = req.params.salario;
-	const telefono = req.params.telefono;
-	const comision = req.params.comision;
 
-	var condition  = nombre   ? { nombre:   { [Op.like]: `%${nombre}%`   } } : null;
-	var condition1 = apellido ? { apellido: { [Op.like]: `%${apellido}%` } } : null;
-	var condition2 = salario  ? { salario:  { [Op.like]: `%${salario}%`  } } : null;
-	var condition3 = telefono ? { telefono: { [Op.like]: `%${telefono}%` } } : null;
-	var condition4 = comision ? { comision: { [Op.like]: `%${comision}%` } } : null;
-
-	switch(nombre){
-		case 'nombre':
-			employee.findAll({ where: condition })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'apellido':
-			employee.findAll({ where: condition1 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'salario':
-			employee.findAll({ where: condition2 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'telefono':
-			employee.findAll({ where: condition3 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-			break;
-		case 'comision':
-			employee.findAll({ where: condition4 })
-			.then(data => {
-				res.json(data);
-			}).catch(err => {
-				res.json("No hay datos para mostrar.")
-			});
-		break;
-	}
-};
-*/
 //######### BUSCAR CON LIMIT ###############
 // GET : http://localhost:3000/employee/limit/1
 exports.obtenerEmpleadosLimit = (req, res) => {
@@ -161,7 +102,75 @@ exports.obtenerEmpleadosLimit = (req, res) => {
 		employee.findAll({limit: valorparam}).then(employee => {
 			res.json(employee);
 		}).catch(error => {
-			return res.sendStatus(401)
+			return res.json("El Usuario no existe")
 		})
+	};
+};
+
+
+// Consulta por coincidencia de atributos, es decir, si los registros tienen un campo
+// nombre, el servicio debe ser capaz de regresar todos los registros que compartan el
+// nombre. Y esto debe funcionar en general para todos los campos de la base.
+//--------------Falta hacer para los demas cmapos---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+exports.buscarCoincidencia = (req, res) => {
+	const palabra = req.params.palabra;
+
+	employee.findAll({ where:{
+			[Op.or]: [
+				{ id_epo: { [Op.like]: `%${palabra}%` } },
+				{ nombre: { [Op.like]: `%${palabra}%` } },
+				{ apellido: { [Op.like]: `%${palabra}%` } },
+				{ salario: { [Op.like]: `%${palabra}%` } },
+				{ telefono: { [Op.like]: `%${palabra}%` } },
+				{ comision: { [Op.like]: `%${palabra}%` } }
+			]
+		}
+	})
+	.then(data => {
+		if(data !== [])
+			res.json(data);
+		else
+			res.json("No hay datos para mostrar.")
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+};
+
+
+// Servicio de consulta de todos los registros, limitado a un número determinado por
+// el cliente.
+
+exports.obtenerEmpleadosLimit = (req, res) => {
+	const val = req.params.val;
+	const a = parseInt(val,10);
+
+	if(a === 0){
+		return res.json("El valor ingresado no es valido");
+	}else{
+		employee.findAll({limit: a}).then(employee => {
+			res.json(employee);
+		}).catch(error => {
+			return res.sendStatus(401)
+		});
+		
 	}
 };
+
+// Servicio de consulta por campos, es decir, un servicio que solo regrese los campos
+// que se piden por el usuario.
+
+exports.buscarPorAtributo = (req, res) => {
+	const val = req.body.valores;
+	console.log(val)
+
+	employee.findAll({ attributes: [...val] })
+	.then(data => {
+		res.json(data);
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+}
+
