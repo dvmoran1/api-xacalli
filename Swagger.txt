@@ -1,0 +1,707 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Swagger Hotel Xacalli
+  contact:
+    email: adal_garcia1992@hotmail.com
+    name: Cristhian Adal Garcia
+  description: Este es el swagger para la Base de datos del Hotel Xacalli
+# host: petstore.swagger.io
+# basePath: /v2
+tags:
+- name: Opiniones
+  description: Todo acerca de las opiniones
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+- name: Hotel
+  description: Acceder a las reservaciones y peticiones de servicios
+- name: Usuarios
+  description: Operaciones con los usuarios
+  externalDocs:
+    description: Find out more about our store
+    url: http://swagger.io
+- description: Operaciones con empleados
+  name: Empleados
+- description: Todo acerca de los servicios
+  name: Servicios
+- name: Habitaciones
+  description: Todo acerca de habitaciones
+# schemes:
+# - http
+paths:
+  /Opinion:
+    post:
+      tags:
+      - Opiniones
+      operationId: addOpinion
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Pet object that needs to be added to the store
+        required: False
+        schema:
+          $ref: '#/definitions/Opinion'
+      responses:
+        405:
+          description: Invalid input
+      summary: Add a new opinion
+  /Opinion/{id_OPN}:
+    get:
+      tags:
+      - Opiniones
+      summary: Find opinion by ID
+      description: Returns a single opinion
+      operationId: getOpinionById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: id_OPN
+        in: path
+        description: ID of opinion to return
+        required: true
+        type: string
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Opinion'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Opinion not found
+    delete:
+      tags:
+      - Opiniones
+      summary: Deletes a opinion
+      operationId: deleteOpinion
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: api_key
+        in: header
+        required: false
+        type: string
+      - name: id_OPN
+        in: path
+        description: opinion id to delete
+        required: true
+        type: string
+      responses:
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Opinion not found
+  /Hotel/Cliente-reservacion:
+    get:
+      tags:
+      - Hotel
+      summary: Returns reservations 
+      description: Returns a map of status codes to quantities
+      operationId: getreservations
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: object
+            additionalProperties:
+              type: integer
+              format: int32
+  /Hotel/Cliente-Servicios:
+    get:
+      tags:
+      - Hotel
+      summary: Returns reservations 
+      description: Returns a map of status codes to quantities
+      operationId: getServices
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: successful operation
+          schema:
+            type: object
+            additionalProperties:
+              type: integer
+              format: int32
+  /Hotel/Clientereservacion:
+    post:
+      tags:
+      - Hotel
+      summary: Place an order for a reservation
+      operationId: placeReservation
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: order placed for purchasing the Reservation to client
+        required: true
+        schema:
+          $ref: '#/definitions/Cliente-habitacion'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Cliente-habitacion'
+        400:
+          description: Invalid Order
+  /Hotel/ClienteServicios:
+    post:
+      tags:
+      - Hotel
+      summary: Place an order for a user
+      operationId: placeServices
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: order placed for purchasing the Service to client
+        required: true
+        schema:
+          $ref: '#/definitions/Cliente-Servicio'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Cliente-Servicio'
+        400:
+          description: Invalid Order
+  /Usuario:
+    post:
+      tags:
+      - Usuarios
+      summary: Create user
+      operationId: createUser
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Created user object
+        required: true
+        schema:
+          $ref: '#/definitions/Cliente'
+      responses:
+        default:
+          description: successful operation
+  /Usuario/:
+    get:
+      tags:
+      - Usuarios
+      summary: Get user
+      operationId: getUser
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Get User object
+        schema:
+          $ref: '#/definitions/Cliente'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Cliente'
+        400:
+          description: Invalid username supplied
+        404:
+          description: User not found
+    put:
+      tags:
+      - Usuarios
+      summary: Updated User
+      operationId: updateUser
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Updated User object
+        required: true
+        schema:
+          $ref: '#/definitions/Cliente'
+      responses:
+        400:
+          description: Invalid User supplied
+        404:
+          description: User not found
+    delete:
+      tags:
+      - Usuarios
+      summary: Delete User
+      operationId: deleteUser
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: The User that needs to be deleted
+        required: true
+        schema:
+          $ref: '#/definitions/Cliente'
+      responses:
+        400:
+          description: Invalid User supplied
+        404:
+          description: User not found
+  /Servicios:
+    post:
+      tags:
+      - Servicios
+      summary: Create Service
+      operationId: createService
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Created Service object
+        required: true
+        schema:
+          $ref: '#/definitions/Servicios'
+      responses:
+        default:
+          description: successful operation
+    get:
+      tags:
+      - Servicios
+      summary: Get Service
+      operationId: getService
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: get a Service
+        required: true
+        schema:
+          $ref: '#/definitions/Servicios'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Servicios'
+        400:
+          description: Invalid username supplied
+        404:
+          description: User not found
+    put:
+      tags:
+      - Servicios
+      summary: Updated Service
+      operationId: updateService
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Updated Service object
+        required: true
+        schema:
+          $ref: '#/definitions/Servicios'
+      responses:
+        400:
+          description: Invalid Service supplied
+        404:
+          description: Service not found
+    delete:
+      tags:
+      - Servicios
+      summary: Delete Service
+      operationId: deleteService
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: The name that needs to be deleted
+        required: true
+        schema:
+          $ref: '#/definitions/Servicios'
+      responses:
+        400:
+          description: Invalid Service supplied
+        404:
+          description: Service not found
+  /Habitaciones:
+    post:
+      tags:
+      - Habitaciones
+      summary: Create Room
+      operationId: createRoom
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Created Room object
+        required: true
+        schema:
+          $ref: '#/definitions/Habitacion'
+      responses:
+        default:
+          description: successful operation
+    get:
+      tags:
+      - Habitaciones
+      summary: Get room
+      operationId: getRoom
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: get a employee 
+        required: true
+        schema:
+          $ref: '#/definitions/Habitacion'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Habitacion'
+        400:
+          description: Invalid Room supplied
+        404:
+          description: Room not found
+    put:
+      tags:
+      - Habitaciones
+      summary: Updated Room
+      operationId: updateRoom
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Updated Room object
+        required: true
+        schema:
+          $ref: '#/definitions/Habitacion'
+      responses:
+        400:
+          description: Invalid Room supplied
+        404:
+          description: Room not found
+    delete:
+      tags:
+      - Habitaciones
+      summary: Delete Room
+      operationId: deleteRoom
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: The name that needs to be deleted
+        required: true
+        schema:
+          $ref: '#/definitions/Habitacion'
+      responses:
+        400:
+          description: Invalid Room supplied
+        404:
+          description: Room not found
+  /Empleado:
+    post:
+      tags:
+      - Empleados
+      summary: Create employee
+      operationId: createEmployee
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Created user object
+        required: true
+        schema:
+          $ref: '#/definitions/Empleado'
+      responses:
+        default:
+          description: successful operation
+    get:
+      tags:
+      - Empleados
+      summary: Get employee
+      operationId: getEmployeeByName
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: get a employee 
+        required: true
+        schema:
+          $ref: '#/definitions/Empleado'
+      responses:
+        200:
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Empleado'
+        400:
+          description: Invalid username supplied
+        404:
+          description: User not found
+    put:
+      tags:
+      - Empleados
+      summary: Updated Employee
+      operationId: updateEmployee
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Updated employee object
+        required: true
+        schema:
+          $ref: '#/definitions/Empleado'
+      responses:
+        400:
+          description: Invalid employee supplied
+        404:
+          description: User not found
+    delete:
+      tags:
+      - Empleados
+      summary: Delete employee
+      operationId: deleteEmployee
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: The employee that needs to be deleted
+        required: true
+        schema:
+          $ref: '#/definitions/Empleado'
+      responses:
+        400:
+          description: Invalid employee supplied
+        404:
+          description: employee not found
+definitions:
+  Opinion:
+    type: object
+    required:
+    - id_OPN
+    - texto
+    - valoracion
+    - CTE_ID_CTE
+    properties:
+      id_OPN:
+        type: string
+      texto:
+        type: string
+      valoracion:
+        type: integer
+        format: int64
+      CTE_ID_CTE:
+        $ref: '#/definitions/Cliente'
+    xml:
+      name: Opinion
+  Cliente:
+    type: object
+    required:
+    - ID_CTE
+    - Nombre
+    - Apellido
+    - Telefono
+    - Mascotas
+    - Nacionalidad
+    - Email
+    - ID_EPO_EPO
+    - No personas
+    properties:
+      ID_CTE:
+        type: string
+      Nombre:
+        type: string
+      Apellido:
+        type: string
+      Telefono: 
+        type: string
+      Mascotas:
+        type: integer
+        format: int64
+      No personas:
+        type: integer
+        format: int64
+      Nacionalidad:
+        type: string
+      Email:
+        type: string
+      Facebook:
+        type: string
+      ID_EPO_EPO:
+        $ref: '#/definitions/Empleado'
+    xml:
+      name: Cliente
+  Empleado:
+    type: object
+    required:
+    - ID_EPO
+    - Nombre
+    - Apellido
+    - Comision
+    - Salario
+    - Telefono
+    - EPO_ID_EPO
+    properties:
+      ID_EPO:
+        type: string
+      Salario:
+        type: integer
+      Nombre:
+        type: string
+      Apellido:
+        type: string
+      Comision:
+        type: integer
+        format: int64
+      Telefono:
+        type: string
+      EPO_ID_EPO:
+        $ref: '#/definitions/Empleado'
+    xml:
+      name: Empleado
+  Cliente-habitacion:
+    type: object
+    required:
+    - Fecha de reservacion
+    - Fecha de inicio
+    - Fecha de fin
+    - Pago anticipo
+    - CTE_ID_CTE
+    - HBN_ID_HBN
+    - No noches
+    - Precio HBN
+    properties:
+      Fecha de reservacion:
+        type: string
+      No noches:
+        type: integer
+      Precio HBN:
+        type: integer
+      Fecha de inicio:
+        type: string
+      Fecha de fin:
+        type: string
+      Check in:
+        type: string
+      Chek out:
+        type: string
+      Pago anticipo:
+        type: integer
+        format: int64
+      CTE_ID_CTE:
+        $ref: '#/definitions/Cliente'
+      HBN_ID_HBN:
+        $ref: '#/definitions/Habitacion'
+    xml:
+      name: Cliente-habitacion
+  Habitacion:
+    type: object
+    required:
+    - ID_HBN
+    - Costo
+    - Cupo
+    - Disponibilidad
+    properties:
+      ID_HBN:
+        type: string
+      Costo:
+        type: integer
+        format: int64
+      Cupo:
+        type: string
+      Disponibilidad:
+        type: integer
+    xml:
+      name: Habitacion
+  Cliente-Servicio:
+    type: object
+    required:
+    - CTE_ID_CTE
+    - SVO_ID_SVO
+    - Fecha de inicio
+    - Fecha de fin
+    - Hora de inicio
+    - Hora de fin
+    properties:
+      CTE_ID_CTE:
+        $ref: '#/definitions/Cliente'
+      SVO_ID_SVO:
+        $ref: '#/definitions/Servicios'
+      Fecha de inicio:
+        type: string
+      Fecha de fin:
+        type: string
+      Hora de inicio:
+        type: string
+      Hora de fin:
+        type: string
+    xml:
+      name: Cliente-Serivicio
+  Servicios:
+    type: object
+    required:
+    - ID_SVO
+    - Costo
+    - Nombre
+    - Duracion
+    properties:
+      ID_SVO:
+        type: string
+      Costo:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      Duracion:
+        type: integer
+    xml:
+      name: Servicios
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /Equipo1-Bedu/Xacalli/1.0.0
+schemes:
+ - https
+ - http
