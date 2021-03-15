@@ -6,14 +6,14 @@ module.exports = function(app) {
     });
 
     const employee = require('../controllers/ctlEmployee.js');
-    app.post('/employee/',          employee.nuevoEmpleado);
-    app.get('/employee/',           employee.obtenerEmpleados);
-    app.get('/employee/:id_epo',    employee.obtenerEmpleado);
-    app.put('/employee/:id_epo',    employee.actualizarEmpleado);
-    app.delete('/employee/:id_epo', employee.eliminarEmpleado);
-    app.get('/employee/limit/:val', employee.obtenerEmpleadosLimit);
-    app.get('/employee/coincidencia/:palabra', employee.buscarCoincidencia);
-    app.get('/employee/atributos/buscar/', employee.buscarPorAtributo);
+    app.post  ('/employee/',           employee.nuevoEmpleado);
+    app.get   ('/employee/',           employee.obtenerEmpleados);
+    app.get   ('/employee/:id_epo',    employee.obtenerEmpleado);
+    app.put   ('/employee/:id_epo',    employee.actualizarEmpleado);
+    app.delete('/employee/:id_epo',    employee.eliminarEmpleado);
+    app.get   ('/employee/limit/:val', employee.obtenerEmpleadosLimit);
+    app.get   ('/employee/coincidencia/:palabra', employee.buscarCoincidencia);
+    app.get   ('/employee/atributos/buscar/',     employee.buscarPorAtributo);
 }
 
 // const router = require('express').Router();

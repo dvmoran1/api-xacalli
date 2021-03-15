@@ -45,12 +45,12 @@ exports.obtenerService = (req, res) => {
 // PUT : http://localhost:3000/service/e001
 exports.actualizarService = (req, res, next) => {
 	const id = req.params.id_epo;
-	service.update({ id_OPN      : req.body.id_OPN, 
-					  cte_id_cte : req.body.cte_id_cte, 
-					  texto      : req.body.texto, 
-					  valoracion : req.body.valoracion,  
+	service.update({ id_svo      : req.body.id_svo, 
+					  nombre : req.body.nombre, 
+					  costo      : req.body.costo, 
+					  duracion : req.body.duracion,  
 					  age        : req.body.age }, {
-			where: { id_OPN: id }
+			where: { id_svo: id }
 	}).then(num => {
 		if (num == 1) {
 			res.send({
@@ -78,7 +78,7 @@ exports.eliminarService= (req, res) => {
 	}
 	service.findByPk(id).then(service => {
 		service.destroy({
-			where: { id_OPN: id }
+			where: { id_svo: id }
 		}).then(() => {
 			res.status(200).json('Se elimino satisfactoriamente el service con Id ' + id);
 		});
@@ -102,3 +102,46 @@ exports.obtenerServicesLimit = (req, res) => {
 		})
 	}
 };
+
+// Consulta por coincidencia de atributos, es decir, si los registros tienen un campo
+// nombre, el servicio debe ser capaz de regresar todos los registros que compartan el
+// nombre. Y esto debe funcionar en general para todos los campos de la base.
+//--------------Falta hacer para los demas cmapos---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+exports.buscarCoincidencia = (req, res) => {
+	const palabra = req.params.palabra;
+
+	service.findAll({ where:{
+			[Op.or]: [
+				{ id_svo:   { [Op.like]: `%${palabra}%` } },
+				{ nombre:   { [Op.like]: `%${palabra}%` } },
+				{ costo:    { [Op.like]: `%${palabra}%` } },
+				{ duracion: { [Op.like]: `%${palabra}%` } }
+		]}
+	})
+	.then(data => {
+		if(data !== [])
+			res.json(data);
+		else
+			res.json("No hay datos para mostrar.")
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+};
+
+// Servicio de consulta por campos, es decir, un servicio que solo regrese los campos
+// que se piden por el usuario.
+
+exports.buscarPorAtributo = (req, res) => {
+	const val = req.body.valores;
+	console.log(val)
+
+	service.findAll({ attributes: [...val] })
+	.then(data => {
+		res.json(data);
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+}

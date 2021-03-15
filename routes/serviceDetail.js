@@ -1,16 +1,11 @@
-const router = require('express').Router();
-const {
-    addServiceDetail,
-    showServiceDetail,
-    showServiceDetails,
-    updateServiceDetail,
-    removeServiceDetail
-} = require('../controllers/ctlClsServiceDetail');
-
-router.post  ('/',    addServiceDetail);
-router.get   ('/:id', showServiceDetail);
-router.get   ('/',    showServiceDetails);
-router.put   ('/:id', updateServiceDetail);
-router.delete('/:id', removeServiceDetail);
-
-module.exports = router;
+module.exports = function(app) {
+    const serviceDetail = require('../controllers/ctlServiceDetail.js');
+    app.post  ('/serviceDetail/',           serviceDetail.nuevoServiceDetail);
+    app.get   ('/serviceDetail/',           serviceDetail.obtenerServiceDetails);
+    app.get   ('/serviceDetail/:id_epo',    serviceDetail.obtenerServiceDetail);
+    app.put   ('/serviceDetail/:id_epo',    serviceDetail.actualizarServiceDetail);
+    app.delete('/serviceDetail/:id_epo',    serviceDetail.eliminarServiceDetail);
+    app.get   ('/serviceDetail/limit/:val', serviceDetail.obtenerServiceDetailsLimit);
+    app.get   ('/serviceDetail/coincidencia/:palabra', serviceDetail.buscarCoincidencia);
+    app.get   ('/serviceDetail/atributos/buscar/',     serviceDetail.buscarPorAtributo);
+}

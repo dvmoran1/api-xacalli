@@ -27,7 +27,7 @@ db.Opinion = require('../models/mdlOpinion.js')(sequelize, Sequelize);
 db.Room = require('../models/mdlRoom.js')(sequelize, Sequelize);
 db.RoomDetail = require('../models/mdlRoomDetail.js')(sequelize, Sequelize);
 db.Service = require('../models/mdlService.js')(sequelize, Sequelize);
-//db.ServiceDetail = require('../models/mdlServiceDetail.js')(sequelize, Sequelize);
+db.ServiceDetail = require('../models/mdlServiceDetail.js')(sequelize, Sequelize);
 
 module.exports = db;
 

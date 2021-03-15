@@ -1,7 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
+	const  Sequelize  = require('sequelize');
+	
 	const Opinion = sequelize.define('Opinion',{
 	id_OPN:{
-		type       : DataTypes.STRING,
+		type: DataTypes.UUID,
+  		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+      	unique: true,
 		primaryKey : true
 	},
 	cte_id_cte:{

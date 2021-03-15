@@ -108,3 +108,53 @@ exports.obtenerRoomDetailsLimit = (req, res) => {
 		})
 	}
 };
+
+// Consulta por coincidencia de atributos, es decir, si los registros tienen un campo
+// nombre, el servicio debe ser capaz de regresar todos los registros que compartan el
+// nombre. Y esto debe funcionar en general para todos los campos de la base.
+//--------------Falta hacer para los demas cmapos---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+exports.buscarCoincidencia = (req, res) => {
+	const palabra = req.params.palabra;
+
+	roomDet.findAll({ where:{
+			[Op.or]: [
+				{ fecha_de_reservacion: { [Op.like]: `%${palabra}%` } },
+				{ fecha_de_inicio:      { [Op.like]: `%${palabra}%` } },
+				{ fecha_de_fin:         { [Op.like]: `%${palabra}%` } },
+				{ no_noches:            { [Op.like]: `%${palabra}%` } },
+				{ check_in:             { [Op.like]: `%${palabra}%` } },
+				{ chek_out:             { [Op.like]: `%${palabra}%` } },
+				{ pago_anticipo:        { [Op.like]: `%${palabra}%` } },
+				{ precio_habitacion:    { [Op.like]: `%${palabra}%` } },
+				{ cte_id_cte:           { [Op.like]: `%${palabra}%` } },
+				{ hbn_id_hbn:           { [Op.like]: `%${palabra}%` } }
+			]
+		}
+	})
+	.then(data => {
+		if(data !== [])
+			res.json(data);
+		else
+			res.json("No hay datos para mostrar.")
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+};
+
+// Servicio de consulta por campos, es decir, un servicio que solo regrese los campos
+// que se piden por el usuario.
+
+exports.buscarPorAtributo = (req, res) => {
+	const val = req.body.valores;
+	console.log(val)
+
+	roomDet.findAll({ attributes: [...val] })
+	.then(data => {
+		res.json(data);
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+}

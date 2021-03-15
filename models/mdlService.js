@@ -1,7 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
+	const  Sequelize  = require('sequelize');
+	
 	const Service = sequelize.define('Service',{
 	id_svo:{
-		type       : DataTypes.STRING,
+		type: DataTypes.UUID,
+  		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+      	unique: true,
 		primaryKey : true
 	},
 	nombre:{

@@ -1,7 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
+	const  Sequelize  = require('sequelize');
+	
 	const Room = sequelize.define('Room',{
 	id_hbn:{
-		type       : DataTypes.STRING,
+		type: DataTypes.UUID,
+  		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+      	unique: true,
 		primaryKey : true
 	},
 	costo:{

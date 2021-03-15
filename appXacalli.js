@@ -27,7 +27,7 @@ require('./routes/opinion')(app);
 require('./routes/room')(app);
 require('./routes/roomDetail')(app);
 require('./routes/service')(app);
-//require('./routes/servicedet')(app);
+require('./routes/serviceDetail')(app);
 
 //cachamos los errores a 404
 app.use(function(req, res, next){

@@ -3,7 +3,7 @@ const client = db.Client;
 const Op = db.Sequelize.Op;
 
 
-//################  NUEVO EMPLEADO #################
+//################  NUEVO CLIENTE #################
 //Servicio para crear un nuevo registro en la base.
 //POST: http://localhost:3000/client/
 exports.nuevoCliente = (req, res,next) => {
@@ -15,7 +15,7 @@ exports.nuevoCliente = (req, res,next) => {
 	});
 };
 
-//################  OBTIENE EMPLEADOS ###############
+//################  OBTIENE CLIENTE ###############
 //Consulta de todos los registros.
 // GET : http://localhost:3000/client/
 exports.obtenerClientes = (req, res) => {
@@ -26,7 +26,7 @@ exports.obtenerClientes = (req, res) => {
 	})
 };
 
-//################  OBTIENE EMPLEADO ###############
+//################  OBTIENE CLIENTE ###############
 //Consulta por id.
 // GET : http://localhost:3000/client/e001
 exports.obtenerCliente = (req, res) => {	
@@ -42,30 +42,30 @@ exports.obtenerCliente = (req, res) => {
 };
 
 //##################################################
-//################  ACTUALIZA EMPLEADO #############
+//################  ACTUALIZA CLIENTE #############
 // PUT : http://localhost:3000/client/e001
 exports.actualizarCliente = (req, res, next) => {
 	const id = req.params.id_epo;
-	client.update({ id_cte    : req.body.id_cte, 
-					  nombre    : req.body.nombre, 
-					  apellido  : req.body.apellido, 
-					  telefono   : req.body.telefono, 
-					  no_personas  : req.body.no_personas, 
-					  no_mascotas  : req.body.no_mascotas, 
+	client.update({   id_cte      : req.body.id_cte, 
+					  nombre      : req.body.nombre, 
+					  apellido    : req.body.apellido, 
+					  telefono    : req.body.telefono, 
+					  no_personas : req.body.no_personas, 
+					  no_mascotas : req.body.no_mascotas, 
 					  nacionalidad: req.body.nacionalidad,
-					  email  : req.body.email, 
-					  facebook  : req.body.facebook, 
-					  epo_id_epo: req.body.epo_id_epo, 
-					  age       : req.body.age }, {
+					  email       : req.body.email, 
+					  facebook    : req.body.facebook, 
+					  epo_id_epo  : req.body.epo_id_epo, 
+					  age         : req.body.age }, {
 			where: { id_cte: id }
 	}).then(num => {
 		if (num == 1) {
 			res.send({
-				message: "Empleado actualizado satisfactoriamente."
+				message: "Cliente actualizado satisfactoriamente."
 			});
 		} else {
 			res.send({
-				message: `No se puede actualizar el empleado con Id=${id}.`
+				message: `No se puede actualizar el cliente con Id=${id}.`
 			});
 		}
 	}).catch(err => {
@@ -75,7 +75,7 @@ exports.actualizarCliente = (req, res, next) => {
 	});
 };
 
-//################  ELIMINA EMPLEADO ###############
+//################  ELIMINA CLIENTE ###############
 //Servicio para eliminar un registro.
 // DELETE : http://localhost:3000/client/e0117
 exports.eliminarCliente = (req, res) => {
@@ -87,7 +87,7 @@ exports.eliminarCliente = (req, res) => {
 		client.destroy({
 			where: { id_cte: id }
 		}).then(() => {
-			res.status(200).json('Se elimino satisfactoriamente el empleado con Id ' + id);
+			res.status(200).json('Se elimino satisfactoriamente el cliente con Id ' + id);
 		});
 	}).catch(error => {
 		return res.json("El cliente no existe")
@@ -109,3 +109,53 @@ exports.obtenerClientesLimit = (req, res) => {
 		})
 	}
 };
+
+// Consulta por coincidencia de atributos, es decir, si los registros tienen un campo
+// nombre, el servicio debe ser capaz de regresar todos los registros que compartan el
+// nombre. Y esto debe funcionar en general para todos los campos de la base.
+//--------------Falta hacer para los demas cmapos---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+exports.buscarCoincidencia = (req, res) => {
+	const palabra = req.params.palabra;
+
+	client.findAll({ where:{
+			[Op.or]: [
+				{ id_cte:      { [Op.like]: `%${palabra}%` } },
+				{ nombre:      { [Op.like]: `%${palabra}%` } },
+				{ apellido:    { [Op.like]: `%${palabra}%` } },
+				{ telefono:    { [Op.like]: `%${palabra}%` } },
+				{ no_personas: { [Op.like]: `%${palabra}%` } },
+				{ no_mascotas: { [Op.like]: `%${palabra}%` } },
+				{ nacionalidad:{ [Op.like]: `%${palabra}%` } },
+				{ email:       { [Op.like]: `%${palabra}%` } },
+				{ facebook:    { [Op.like]: `%${palabra}%` } },
+				{ epo_id_epo:  { [Op.like]: `%${palabra}%` } }
+			]
+		}
+	})
+	.then(data => {
+		if(data !== [])
+			res.json(data);
+		else
+			res.json("No hay datos para mostrar.")
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+};
+
+// Servicio de consulta por campos, es decir, un servicio que solo regrese los campos
+// que se piden por el usuario.
+
+exports.buscarPorAtributo = (req, res) => {
+	const val = req.body.valores;
+	console.log(val)
+
+	client.findAll({ attributes: [...val] })
+	.then(data => {
+		res.json(data);
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
+}

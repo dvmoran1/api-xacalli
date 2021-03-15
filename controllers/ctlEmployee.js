@@ -101,40 +101,9 @@ exports.obtenerEmpleadosLimit = (req, res) => {
 		employee.findAll({limit: valorparam}).then(employee => {
 			res.json(employee);
 		}).catch(error => {
-			return res.json("El Usuario no existe")
+			return res.json("El empleado no existe")
 		})
 	};
-};
-
-
-// Consulta por coincidencia de atributos, es decir, si los registros tienen un campo
-// nombre, el servicio debe ser capaz de regresar todos los registros que compartan el
-// nombre. Y esto debe funcionar en general para todos los campos de la base.
-//--------------Falta hacer para los demas cmapos---------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------------------------------------
-exports.buscarCoincidencia = (req, res) => {
-	const palabra = req.params.palabra;
-
-	employee.findAll({ where:{
-			[Op.or]: [
-				{ id_epo: { [Op.like]: `%${palabra}%` } },
-				{ nombre: { [Op.like]: `%${palabra}%` } },
-				{ apellido: { [Op.like]: `%${palabra}%` } },
-				{ salario: { [Op.like]: `%${palabra}%` } },
-				{ telefono: { [Op.like]: `%${palabra}%` } },
-				{ comision: { [Op.like]: `%${palabra}%` } }
-			]
-		}
-	})
-	.then(data => {
-		if(data !== [])
-			res.json(data);
-		else
-			res.json("No hay datos para mostrar.")
-	})
-	.catch(err => {
-		res.json("No hay datos para mostrar.")
-	});
 };
 
 
@@ -155,6 +124,36 @@ exports.obtenerEmpleadosLimit = (req, res) => {
 		});
 		
 	}
+};
+
+// Consulta por coincidencia de atributos, es decir, si los registros tienen un campo
+// nombre, el servicio debe ser capaz de regresar todos los registros que compartan el
+// nombre. Y esto debe funcionar en general para todos los campos de la base.
+//--------------Falta hacer para los demas cmapos---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------
+exports.buscarCoincidencia = (req, res) => {
+	const palabra = req.params.palabra;
+
+	employee.findAll({ where:{
+			[Op.or]: [
+				{ id_epo:   { [Op.like]: `%${palabra}%` } },
+				{ nombre:   { [Op.like]: `%${palabra}%` } },
+				{ apellido: { [Op.like]: `%${palabra}%` } },
+				{ salario:  { [Op.like]: `%${palabra}%` } },
+				{ telefono: { [Op.like]: `%${palabra}%` } },
+				{ comision: { [Op.like]: `%${palabra}%` } }
+			]
+		}
+	})
+	.then(data => {
+		if(data !== [])
+			res.json(data);
+		else
+			res.json("No hay datos para mostrar.")
+	})
+	.catch(err => {
+		res.json("No hay datos para mostrar.")
+	});
 };
 
 // Servicio de consulta por campos, es decir, un servicio que solo regrese los campos
