@@ -5,13 +5,13 @@ CREATE DATABASE api_xacalli;
 USE api_xacalli;
 
 CREATE TABLE empleado (
-    id_epo      VARCHAR (10) NOT NULL,
-    nombre      VARCHAR (20) NOT NULL,
-    apellido    VARCHAR (20) NOT NULL,
+    id_epo      VARCHAR (36) NOT NULL,
+    nombre      VARCHAR (30) NOT NULL,
+    apellido    VARCHAR (30) NOT NULL,
     salario     INT NOT NULL,
     telefono    VARCHAR (15) NOT NULL,
     comision    INT,
-    edo_id_edo  VARCHAR (10)
+    edo_id_edo  VARCHAR (36)
 );
 
 ALTER TABLE empleado ADD CONSTRAINT epo_pk PRIMARY KEY ( id_epo );
@@ -21,16 +21,16 @@ ALTER TABLE empleado
         REFERENCES empleado ( id_epo );
 
 CREATE TABLE cliente (
-    id_cte        	VARCHAR (10) NOT NULL,
-    nombre        	VARCHAR (20) NOT NULL,
-    apellido      	VARCHAR (20) NOT NULL,
+    id_cte        	VARCHAR (36) NOT NULL,
+    nombre        	VARCHAR (30) NOT NULL,
+    apellido      	VARCHAR (40) NOT NULL,
     telefono      	VARCHAR (15) NOT NULL,
     no_personas     INT NOT NULL,
     no_mascotas   	INT NOT NULL,
-    nacionalidad  	VARCHAR (20) NOT NULL,
+    nacionalidad  	VARCHAR (30) NOT NULL,
     email         	VARCHAR (30),
     facebook      	VARCHAR (30),
-    epo_id_epo    	VARCHAR (10) NOT NULL
+    epo_id_epo    	VARCHAR (36) NOT NULL
 );
 
 ALTER TABLE cliente ADD CONSTRAINT cte_pk PRIMARY KEY ( id_cte );
@@ -40,29 +40,29 @@ ALTER TABLE cliente
         REFERENCES empleado ( id_epo );
 
 CREATE TABLE habitacion (
-    id_hbn          VARCHAR (10) NOT NULL,
+    id_hbn          VARCHAR (36) NOT NULL,
     costo           INT NOT NULL,
     cupo            INT NOT NULL,
-    disponibilidad  VARCHAR (13)
+    disponibilidad  VARCHAR (20)
 );
 
 ALTER TABLE habitacion ADD CONSTRAINT hbn_pk PRIMARY KEY ( id_hbn );
 
 CREATE TABLE cliente_habitacion (
+	id_cte_hbn            VARCHAR (36) NOT NULL,
     fecha_de_reservacion  DATE NOT NULL,
     fecha_de_inicio       DATE NOT NULL,
     fecha_de_fin          DATE NOT NULL,
     no_noches             INT,
-    check_in              VARCHAR (20) NOT NULL,
-    chek_out              VARCHAR (20) NOT NULL,
+    check_in              VARCHAR (30) NOT NULL,
+    chek_out              VARCHAR (30) NOT NULL,
     pago_anticipo         INT NOT NULL,
     precio_habitacion     INT NOT NULL,
-    cte_id_cte            VARCHAR (10) NOT NULL,
-    hbn_id_hbn            VARCHAR (10) NOT NULL
+    cte_id_cte            VARCHAR (36) NOT NULL,
+    hbn_id_hbn            VARCHAR (36) NOT NULL
 );
 
-ALTER TABLE cliente_habitacion ADD CONSTRAINT CTE_HBN_PK PRIMARY KEY ( cte_id_cte,
-                                                                               hbn_id_hbn );
+ALTER TABLE cliente_habitacion ADD CONSTRAINT CTE_HBN_PK PRIMARY KEY ( id_cte_hbn );
 
 ALTER TABLE cliente_habitacion
     ADD CONSTRAINT CTE_HBN_CTE_FK FOREIGN KEY ( cte_id_cte )
@@ -73,17 +73,18 @@ ALTER TABLE cliente_habitacion
         REFERENCES habitacion ( id_hbn );
         
 CREATE TABLE servicios (
-    id_svo    VARCHAR (10) NOT NULL,
-    nombre    VARCHAR (15) NOT NULL,
+    id_svo    VARCHAR (36) NOT NULL,
+    nombre    VARCHAR (30) NOT NULL,
     costo     INT NOT NULL,
-    duracion  VARCHAR (15) NOT NULL
+    duracion  VARCHAR (30) NOT NULL
 );
 
 ALTER TABLE servicios ADD CONSTRAINT svo_pk PRIMARY KEY ( id_svo );
 
 CREATE TABLE cliente_servicio (
-    cte_id_cte       VARCHAR(10) NOT NULL,
-    svo_id_svo       VARCHAR(10)NOT NULL,
+	id_cte_svo       VARCHAR (36) NOT NULL,
+    cte_id_cte       VARCHAR(36) NOT NULL,
+    svo_id_svo       VARCHAR(36)NOT NULL,
     fecha_de_inicio  DATE NOT NULL,
     fecha_de_fin     DATE NOT NULL,
     hora_de_inicio   VARCHAR(12) NOT NULL,
@@ -99,13 +100,12 @@ ALTER TABLE cliente_servicio
     ADD CONSTRAINT CTE_SVO_SVO_FK FOREIGN KEY ( svo_id_svo )
         REFERENCES servicios ( id_svo );
 
-ALTER TABLE cliente_servicio ADD CONSTRAINT CTE_SVO_PK PRIMARY KEY ( cte_id_cte,
-                                                                             svo_id_svo );
+ALTER TABLE cliente_servicio ADD CONSTRAINT CTE_SVO_PK PRIMARY KEY ( id_cte_svo );
 
 
 CREATE TABLE opinion (
-    id_OPN      VARCHAR (10) Not NULL,
-    cte_id_cte  VARCHAR (10) NOT NULL,
+    id_OPN      VARCHAR (36) Not NULL,
+    cte_id_cte  VARCHAR (36) NOT NULL,
     texto       VARCHAR (600) NOT NULL,
     valoracion   INT NOT NULL
 );
@@ -114,8 +114,7 @@ ALTER TABLE opinion
     ADD CONSTRAINT opn_cte_fk FOREIGN KEY ( cte_id_cte )
         REFERENCES cliente ( id_cte );
         
-ALTER TABLE opinion ADD CONSTRAINT CTE_OPN_PK PRIMARY KEY ( id_OPN,
-                                                                  cte_id_cte );
+ALTER TABLE opinion ADD CONSTRAINT CTE_OPN_PK PRIMARY KEY ( id_OPN );
 
 -- Descripción de las tablas
 
