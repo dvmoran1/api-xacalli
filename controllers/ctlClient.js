@@ -1,14 +1,15 @@
 const db = require('../config/dbConexion.js');
-const employee = db.Employee;
+const client = db.Client;
 const Op = db.Sequelize.Op;
+
 
 //################  NUEVO EMPLEADO #################
 //Servicio para crear un nuevo registro en la base.
-//POST: http://localhost:3000/employee/
-exports.nuevoEmpleado = (req, res,next) => {
-	const Emp = employee.build(req.body);
-	Emp.save().then(emp => {
-		return res.status(201).json(emp)
+//POST: http://localhost:3000/client/
+exports.nuevoCliente = (req, res,next) => {
+	const Cli = client.build(req.body);
+	Cli.save().then(cli => {
+		return res.status(201).json(cli)
 	}).then(next).catch(error => {
 		return res.json("El usuario ya existe")
 	});
@@ -16,10 +17,10 @@ exports.nuevoEmpleado = (req, res,next) => {
 
 //################  OBTIENE EMPLEADOS ###############
 //Consulta de todos los registros.
-// GET : http://localhost:3000/employee/
-exports.obtenerEmpleados = (req, res) => {
-	employee.findAll().then(employee => {
-		res.json(employee);
+// GET : http://localhost:3000/client/
+exports.obtenerClientes = (req, res) => {
+	client.findAll().then(clien => {
+		res.json(clien);
 	}).catch(error => {
 		return res.sendStatus(401)
 	})
@@ -27,14 +28,14 @@ exports.obtenerEmpleados = (req, res) => {
 
 //################  OBTIENE EMPLEADO ###############
 //Consulta por id.
-// GET : http://localhost:3000/employee/e001
-exports.obtenerEmpleado = (req, res) => {	
+// GET : http://localhost:3000/client/e001
+exports.obtenerCliente = (req, res) => {	
 	const id = req.params.id_epo;
-	employee.findByPk(id).then(employee => {
-		if(employee===null){
+	client.findByPk(id).then(client => {
+		if(client===null){
 			return res.json("El id de usuario no existe");
 		}
-		res.json(employee);
+		res.json(client);
 	}).catch(error => {
 		return res.sendStatus(401)
 	})
@@ -42,18 +43,21 @@ exports.obtenerEmpleado = (req, res) => {
 
 //##################################################
 //################  ACTUALIZA EMPLEADO #############
-// PUT : http://localhost:3000/employee/e001
-exports.actualizarEmpleado = (req, res, next) => {
+// PUT : http://localhost:3000/client/e001
+exports.actualizarCliente = (req, res, next) => {
 	const id = req.params.id_epo;
-	employee.update({ id_epo    : req.body.id_epo, 
+	client.update({ id_cte    : req.body.id_cte, 
 					  nombre    : req.body.nombre, 
 					  apellido  : req.body.apellido, 
-					  salario   : req.body.salario, 
-					  telefono  : req.body.telefono, 
-					  comision  : req.body.comision, 
-					  edo_id_edo: req.body.edo_id_edo, 
+					  telefono   : req.body.telefono, 
+					  no_personas  : req.body.no_personas, 
+					  no_mascotas  : req.body.no_mascotas, 
+					  nacionalidad: req.body.nacionalidad,
+					  email  : req.body.email, 
+					  facebook  : req.body.facebook, 
+					  epo_id_epo: req.body.epo_id_epo, 
 					  age       : req.body.age }, {
-			where: { id_epo: id }
+			where: { id_cte: id }
 	}).then(num => {
 		if (num == 1) {
 			res.send({
@@ -73,15 +77,15 @@ exports.actualizarEmpleado = (req, res, next) => {
 
 //################  ELIMINA EMPLEADO ###############
 //Servicio para eliminar un registro.
-// DELETE : http://localhost:3000/employee/e0117
-exports.eliminarEmpleado = (req, res) => {
+// DELETE : http://localhost:3000/client/e0117
+exports.eliminarCliente = (req, res) => {
 	const id = req.params.id_epo;
 	if(id === null){
 		return res.json("Mando un campo nulo");
 	}
-	employee.findByPk(id).then(employee => {
-		employee.destroy({
-			where: { id_epo: id }
+	client.findByPk(id).then(client => {
+		client.destroy({
+			where: { id_cte: id }
 		}).then(() => {
 			res.status(200).json('Se elimino satisfactoriamente el empleado con Id ' + id);
 		});
@@ -92,7 +96,7 @@ exports.eliminarEmpleado = (req, res) => {
 
 //######### BUSCAR POR COINCIDENCIA ############### OPCION DOS 
 //                                       .../campo de tabla/valorabuscar
-// GET : http://localhost:3000/employee/coin/salario/C
+// GET : http://localhost:3000/client/coin/salario/C
 /*exports.buscarCoincidencia = (req, res) => {
 	const nombre = req.params.nombre;
 	const apellido = req.params.apellido;
@@ -108,7 +112,7 @@ exports.eliminarEmpleado = (req, res) => {
 
 	switch(nombre){
 		case 'nombre':
-			employee.findAll({ where: condition })
+			client.findAll({ where: condition })
 			.then(data => {
 				res.json(data);
 			}).catch(err => {
@@ -116,7 +120,7 @@ exports.eliminarEmpleado = (req, res) => {
 			});
 			break;
 		case 'apellido':
-			employee.findAll({ where: condition1 })
+			client.findAll({ where: condition1 })
 			.then(data => {
 				res.json(data);
 			}).catch(err => {
@@ -124,7 +128,7 @@ exports.eliminarEmpleado = (req, res) => {
 			});
 			break;
 		case 'salario':
-			employee.findAll({ where: condition2 })
+			client.findAll({ where: condition2 })
 			.then(data => {
 				res.json(data);
 			}).catch(err => {
@@ -132,7 +136,7 @@ exports.eliminarEmpleado = (req, res) => {
 			});
 			break;
 		case 'telefono':
-			employee.findAll({ where: condition3 })
+			client.findAll({ where: condition3 })
 			.then(data => {
 				res.json(data);
 			}).catch(err => {
@@ -140,7 +144,7 @@ exports.eliminarEmpleado = (req, res) => {
 			});
 			break;
 		case 'comision':
-			employee.findAll({ where: condition4 })
+			client.findAll({ where: condition4 })
 			.then(data => {
 				res.json(data);
 			}).catch(err => {
@@ -151,15 +155,15 @@ exports.eliminarEmpleado = (req, res) => {
 };
 */
 //######### BUSCAR CON LIMIT ###############
-// GET : http://localhost:3000/employee/limit/1
-exports.obtenerEmpleadosLimit = (req, res) => {
+// GET : http://localhost:3000/client/limit/1
+exports.obtenerClientesLimit = (req, res) => {
 	const param = req.params.val;
 	const valorparam = parseInt(param,10);
 	if(valorparam === 0){
 		return res.json("El valor ingresado no es valido");
 	}else{
-		employee.findAll({limit: valorparam}).then(employee => {
-			res.json(employee);
+		client.findAll({limit: valorparam}).then(client => {
+			res.json(client);
 		}).catch(error => {
 			return res.sendStatus(401)
 		})

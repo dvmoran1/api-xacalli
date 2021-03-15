@@ -26,6 +26,8 @@ sequelize.authenticate().then(() => {
 */
 const db = require('./config/dbConexion.js');
 require('./routes/employee')(app);
+require('./routes/client')(app);
+
 
 
 //--------------------------video
@@ -45,10 +47,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //lo agregamos despues de configurar el index
-app.use('/',require('./routes'));//lo podemos eliminar--------
+//app.use('/',require('./routes'));//lo podemos eliminar--------
 //require('./config/passport');
-require('./models/mdlEmployee');
-
+//require('./models/mdlEmployee');
+//require('./models/mdlClient');
 
 
 

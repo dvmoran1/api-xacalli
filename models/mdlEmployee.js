@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 	comision       :DataTypes.INTEGER,
 	edo_id_edo     :DataTypes.INTEGER
 },{tableName : 'empleado',timestamps: false});
+	Employee.hasOne(Employee,{foreignKey:'id_epo'});
 	return Employee;
 }
 
