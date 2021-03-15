@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 //################  NUEVA roomDet #################
 //Servicio para crear un nuevo registro en la base.
-//POST: http://localhost:3000/roomDet/
+//POST: http://localhost:3000/roomDetail/
 exports.nuevoRoomDetail = (req, res,next) => {
 	const roomDe = roomDet.build(req.body);
 	roomDe.save().then(dato => {
@@ -16,7 +16,7 @@ exports.nuevoRoomDetail = (req, res,next) => {
 
 //################  OBTIENE roomDet ###############
 //Consulta de todos los registros.
-// GET : http://localhost:3000/roomDet/
+// GET : http://localhost:3000/roomDetail/
 exports.obtenerRoomDetails = (req, res) => {
 	roomDet.findAll().then(dato => {
 		res.json(dato);
@@ -27,7 +27,7 @@ exports.obtenerRoomDetails = (req, res) => {
 
 //################  OBTIENE roomDet ###############
 //Consulta por id.
-// GET : http://localhost:3000/roomDet/e001
+// GET : http://localhost:3000/roomDetail/e001
 exports.obtenerRoomDetail = (req, res) => {	
 	const id = req.params.id_epo;
 	roomDet.findByPk(id).then(roomDet => {
@@ -42,7 +42,7 @@ exports.obtenerRoomDetail = (req, res) => {
 
 //##################################################
 //################  ACTUALIZA roomDet #############
-// PUT : http://localhost:3000/roomDet/e001
+// PUT : http://localhost:3000/roomDetail/e001
 exports.actualizarRoomDetail = (req, res, next) => {
 	const id = req.params.id_epo;
 	roomDet.update({  fecha_de_reservacion  : req.body.fecha_de_reservacion, 
@@ -54,9 +54,8 @@ exports.actualizarRoomDetail = (req, res, next) => {
 					  pago_anticipo         : req.body.pago_anticipo, 
 					  precio_habitacion     : req.body.precio_habitacion,
 					  cte_id_cte            : req.body.cte_id_cte, 
-					  hbn_id_hbn            : req.body.hbn_id_hbn, 
-					  age                   : req.body.age }, {
-			where: { cte_id_cte: id }
+					  hbn_id_hbn            : req.body.hbn_id_hbn}, {
+			where: { id_cte_hbn: id }
 	}).then(num => {
 		if (num == 1) {
 			res.send({
@@ -76,7 +75,7 @@ exports.actualizarRoomDetail = (req, res, next) => {
 
 //################  ELIMINA roomDet ###############
 //Servicio para eliminar un registro.
-// DELETE : http://localhost:3000/roomDet/e0117
+// DELETE : http://localhost:3000/roomDetail/e0117
 exports.eliminarRoomDetail= (req, res) => {
 	const id = req.params.id_epo;
 	if(id === null){
@@ -84,7 +83,7 @@ exports.eliminarRoomDetail= (req, res) => {
 	}
 	roomDet.findByPk(id).then(roomDet => {
 		roomDet.destroy({
-			where: { cte_id_cte: id }
+			where: { id_cte_hbn: id }
 		}).then(() => {
 			res.status(200).json('Se elimino satisfactoriamente el roomDet con Id ' + id);
 		});
@@ -94,7 +93,7 @@ exports.eliminarRoomDetail= (req, res) => {
 };
 
 //######### BUSCAR CON LIMIT ###############
-// GET : http://localhost:3000/roomDet/limit/1
+// GET : http://localhost:3000/roomDetail/limit/1
 exports.obtenerRoomDetailsLimit = (req, res) => {
 	const param = req.params.val;
 	const valorparam = parseInt(param,10);

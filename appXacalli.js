@@ -15,7 +15,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended:false}));
 app.use(bodyParser.json());
 
-app.use('/',require('./routes'));
+// app.use('/',require('./routes'));
 
 const db = require('./config/dbConexion.js');
 

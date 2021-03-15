@@ -1,5 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
+	const  Sequelize  = require('sequelize');
+	
 	const cliHabitacion = sequelize.define('cliHabitacion',{
+	id_cte_hbn:{
+		type: DataTypes.UUID,
+		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+		unique: true,
+		primaryKey : true
+	},
 	fecha_de_reservacion:{
 		type       : DataTypes.DATE,
 		primaryKey : true

@@ -1,6 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-	
+	const  Sequelize  = require('sequelize');
+
 	const serviceDet = sequelize.define('serviceDet',{
+	id_cte_svo:{
+		type: DataTypes.UUID,
+		defaultValue: Sequelize.UUIDV4,
+		allowNull: false,
+		unique: true,
+		primaryKey : true
+	},
 	cte_id_cte:{
 		type       : DataTypes.STRING,
 		allowNull  : false

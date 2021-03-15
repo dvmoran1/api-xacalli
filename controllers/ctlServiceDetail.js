@@ -47,9 +47,8 @@ exports.actualizarServiceDetail = (req, res, next) => {
 					    fecha_de_inicio : req.body.fecha_de_inicio, 
 					    fecha_de_fin    : req.body.fecha_de_fin,
 					    hora_de_inicio  : req.body.hora_de_inicio, 
-					    hora_de_fin     : req.body.hora_de_fin,    
-					    age             : req.body.age }, {
-			where: { cte_id_cte: id }
+					    hora_de_fin     : req.body.hora_de_fin}, {
+			where: { id_cte_svo: id }
 	}).then(num => {
 		if (num == 1) {
 			res.send({
@@ -77,7 +76,7 @@ exports.eliminarServiceDetail= (req, res) => {
 	}
 	serviceDet.findByPk(id).then(serviceDet => {
 		serviceDet.destroy({
-			where: { cte_id_cte: id }
+			where: { id_cte_svo: id }
 		}).then(() => {
 			res.status(200).json('Se elimino satisfactoriamente el serviceDet con Id ' + id);
 		});
@@ -112,10 +111,10 @@ exports.buscarCoincidencia = (req, res) => {
 
 	serviceDet.findAll({ where:{
 			[Op.or]: [
-				{ id_svo:   { [Op.like]: `%${palabra}%` } },
-				{ nombre:   { [Op.like]: `%${palabra}%` } },
-				{ costo:    { [Op.like]: `%${palabra}%` } },
-				{ duracion: { [Op.like]: `%${palabra}%` } }
+				{ fecha_de_inicio:   { [Op.like]: `%${palabra}%` } },
+				{ fecha_de_fin:      { [Op.like]: `%${palabra}%` } },
+				{ hora_de_inicio:    { [Op.like]: `%${palabra}%` } },
+				{ hora_de_fin:       { [Op.like]: `%${palabra}%` } }
 		]}
 	})
 	.then(data => {
